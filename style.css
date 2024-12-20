@@ -1,0 +1,94 @@
+body{
+    margin: 0px;
+
+}
+
+h1{
+    font-size: 30px;
+    color: white;
+    margin: 0px;
+    text-align: center;
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-width: 0;
+    overflow:hidden;
+    white-space: nowrap;
+}
+
+header{
+    display: flex;
+    background-color: #BE5643;
+    padding-right: 14px;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.movie-card{
+    display: flex;
+    width: 95vw;
+    height: 80px;
+    padding: 8px;
+}
+
+.movie-card-content{
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+
+h2{
+    font-size: 24;
+    font-family: "Helvetica";
+    text-decoration: underline;
+    margin: 0px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.movie-info{
+    font-size: 16;
+    font-family: "Lucida Console";
+    color: rgb(109, 109, 109);
+    margin: 0px;
+    margin-bottom: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.movie-image{
+    height: 100%;
+}
+
+button{
+    height: 54px;
+    width: 62px;
+    border: 0px;
+    border-radius: 20px;
+    background-color: #AA4A39;
+    -webkit-box-shadow: 0px 26px 0px 0px rgba(101,38,26,1);
+    -moz-box-shadow: 0px 26px 0px 0px rgba(101,38,26,1);
+    box-shadow: 0px 10px 0px 0px rgba(101,38,26,1);
+    margin-left: 10px;
+}
+
+.bookmark-button{
+    height: 60%;
+}
+
+.mobile-search-button{
+}
+
+.mobile-category-button{
+}
+
+.button-image{
+    height: 70%;
+}
