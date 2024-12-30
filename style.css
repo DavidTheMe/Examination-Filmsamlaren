@@ -94,6 +94,10 @@ button:active {
     height: 60%;
 }
 
+.bookmark-button{
+    display: none;
+}
+
 .button-image{
     height: 70%;
 }
@@ -122,7 +126,14 @@ button:active {
     }
 
     button{
-        height: 76px;
-        width: 88px;
+        height: 100px;
+        width: 100px;
+    }
+
+    .bookmark-button{
+        display:block;
+        height: 100px;
+        min-width: 100px;
+        max-width: 100px;
     }
   }
