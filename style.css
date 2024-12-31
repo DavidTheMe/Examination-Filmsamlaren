@@ -3,6 +3,15 @@ body{
 
 }
 
+.button-text{
+    font-size: 20px;
+    font-family: "Lucida Console";
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
 h1{
     font-size: clamp(5px, 8vw, 80px); 
     color: white;
@@ -15,8 +24,22 @@ h1{
     white-space: nowrap;
 }
 
-header{
+.mobile-header{
     display: flex;
+    background-color: #BE5643;
+    padding-right: 14px;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.desktop-header{
+    display: none;
+}
+
+.desktop-header-lower{
+    display: none;
+    justify-content: center;
     background-color: #BE5643;
     padding-right: 14px;
     padding-left: 10px;
@@ -69,7 +92,7 @@ h2{
 
 button{
     height: 54px;
-    width: 62px;
+    min-width: 62px;
     border: 0px;
     border-radius: 20px;
     background-color: #AA4A39;
@@ -102,6 +125,24 @@ button:active {
     height: 70%;
 }
 
+.desktop-dropdown{
+    display: flex;
+}
+
+.desktop-dropdown-icon{
+    height: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+input{
+    min-width: 30%;
+    max-width: 50%;
+    font-size: 26px;
+}
+
 @media only screen and (min-width: 500px) {
     .movie-card{
         margin: 20px;
@@ -127,13 +168,42 @@ button:active {
 
     button{
         height: 100px;
-        width: 100px;
+        min-width: 100px;
     }
 
     .bookmark-button{
-        display:block;
+        display: inline;
         height: 100px;
         min-width: 100px;
         max-width: 100px;
+    }
+  }
+
+  @media only screen and (min-width: 1000px){
+    .mobile-header{
+        display: none;
+    }
+
+    .desktop-header{
+        display: inline;
+    }
+
+    .desktop-header-lower{
+        display: flex;
+    }
+    
+    h1{
+        background-color: #65261A;
+    }
+
+    button{
+        height: 46px;
+        margin-left: 10px;
+        margin-right: 10px;
+        transform:translateY(-8px)
+    }
+
+    button:active {
+        transform: translateY(0px);
     }
   }
