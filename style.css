@@ -1,209 +1,222 @@
-body{
-    margin: 0px;
-
+body {
+  margin: 0px;
 }
 
-.button-text{
-    font-size: 20px;
-    font-family: "Lucida Console";
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 4px;
-    margin-right: 4px;
+.button-text {
+  font-size: 20px;
+  font-family: "Lucida Console";
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
-h1{
-    font-size: clamp(5px, 8vw, 80px); 
-    color: white;
-    margin: 0px;
-    text-align: center;
-    flex-shrink: 1;
-    flex-grow: 1;
-    min-width: 0;
-    overflow:hidden;
-    white-space: nowrap;
+h1 {
+  font-size: clamp(5px, 8vw, 80px);
+  color: white;
+  margin: 0px;
+  text-align: center;
+  flex-shrink: 1;
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-.mobile-header{
-    display: flex;
-    background-color: #BE5643;
-    padding-right: 14px;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+.mobile-header {
+  display: flex;
+  background-color: #be5643;
+  padding-right: 14px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.desktop-header{
-    display: none;
+.desktop-header {
+  display: none;
 }
 
-.desktop-header-lower{
-    display: none;
-    justify-content: center;
-    background-color: #BE5643;
-    padding-right: 14px;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+.desktop-header-lower {
+  display: none;
+  justify-content: center;
+  background-color: #be5643;
+  padding-right: 14px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.movie-card{
-    display: flex;
-    width: 95vw;
-    height: 80px;
-    padding: 8px;
+.movie-card {
+  display: flex;
+  width: 95vw;
+  height: 80px;
+  padding: 8px;
 }
 
-.movie-card-content{
-    flex-shrink: 1;
-    flex-grow: 1;
-    min-width: 0;
+.movie-card-content {
+  flex-shrink: 1;
+  flex-grow: 1;
+  min-width: 0;
 }
 
-
-h2{
-    font-size: 24px;
-    font-family: "Helvetica";
-    text-decoration: underline;
-    margin: 0px;
-    overflow:hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-left: 8px;
-    padding-right: 8px;
+h2 {
+  font-size: 24px;
+  font-family: "Helvetica";
+  text-decoration: underline;
+  margin: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
-.movie-info{
-    font-size: 16;
-    font-family: "Lucida Console";
-    color: rgb(109, 109, 109);
-    margin: 0px;
-    margin-bottom: 12px;
-    text-overflow: ellipsis;
-    overflow: hidden; 
-    white-space: nowrap;
-    padding-left: 8px;
-    padding-right: 8px;
+.movie-info {
+  font-size: 16;
+  font-family: "Lucida Console";
+  color: rgb(109, 109, 109);
+  margin: 0px;
+  margin-bottom: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
-.movie-image{
-    height: 100%;
+.movie-image {
+  height: 100%;
 }
 
-button{
-    height: 54px;
-    min-width: 62px;
-    border: 0px;
-    border-radius: 20px;
-    background-color: #AA4A39;
-    -webkit-box-shadow: 0px 26px 0px 0px rgba(101,38,26,1);
-    -moz-box-shadow: 0px 26px 0px 0px rgba(101,38,26,1);
-    box-shadow: 0px 10px 0px 0px rgba(101,38,26,1);
-    margin-left: 10px;
+button {
+  height: 54px;
+  min-width: 62px;
+  border: 0px;
+  border-radius: 20px;
+  background-color: #aa4a39;
+  -webkit-box-shadow: 0px 26px 0px 0px rgba(101, 38, 26, 1);
+  -moz-box-shadow: 0px 26px 0px 0px rgba(101, 38, 26, 1);
+  box-shadow: 0px 10px 0px 0px rgba(101, 38, 26, 1);
+  margin-left: 10px;
 }
 
 button:hover {
-    background-color: #c97351;
-
+  background-color: #c97351;
 }
 
 button:active {
-    box-shadow: 0px 2px 0px 0px rgba(101,38,26,1);
-    transition: transform 0.1s ease;
-    transform: translateY(8px);
+  box-shadow: 0px 2px 0px 0px rgba(101, 38, 26, 1);
+  transition: transform 0.1s ease;
+  transform: translateY(8px);
 }
 
-.mobile-bookmark-button{
-    height: 60%;
+.mobile-bookmark-button {
+  height: 60%;
 }
 
-.bookmark-button{
-    display: none;
+.bookmark-button {
+  display: none;
 }
 
-.button-image{
-    height: 70%;
+.button-image {
+  height: 70%;
 }
 
-.desktop-dropdown{
-    display: flex;
+.desktop-dropdown {
+  display: flex;
 }
 
-.desktop-dropdown-icon{
-    height: 50%;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-left: 4px;
-    margin-right: 4px;
+.desktop-dropdown-icon {
+  height: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
-input{
-    min-width: 30%;
-    max-width: 50%;
-    font-size: 26px;
+input {
+  min-width: 30%;
+  max-width: 50%;
+  font-size: 26px;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin: 60px;
+}
+
+h3{
+    text-align: center;
+    margin: auto;
+    height: 46px;
+    width: 46px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 46px;
 }
 
 @media only screen and (min-width: 500px) {
-    .movie-card{
-        margin: 20px;
-        background-color: rgb(240, 240, 240);
-        width: 85vw;
-        height: 200px;
-        border-radius: 20px;
-        padding: 28px;
+  .movie-card {
+    margin: 20px;
+    background-color: rgb(240, 240, 240);
+    width: 85vw;
+    height: 200px;
+    border-radius: 20px;
+    padding: 28px;
 
-        -webkit-box-shadow: 0px 7px 6px 0px rgba(186,186,186,1);
-        -moz-box-shadow: 0px 7px 6px 0px rgba(186,186,186,1);
-        box-shadow: 0px 7px 6px 0px rgba(186,186,186,1);
-    }
-
-    .movie-info{
-        color: black;
-        font-size: 20px;
-    }
-
-    .mobile-bookmark-button{
-        display: none;
-    }
-
-    button{
-        height: 100px;
-        min-width: 100px;
-    }
-
-    .bookmark-button{
-        display: inline;
-        height: 100px;
-        min-width: 100px;
-        max-width: 100px;
-    }
+    -webkit-box-shadow: 0px 7px 6px 0px rgba(186, 186, 186, 1);
+    -moz-box-shadow: 0px 7px 6px 0px rgba(186, 186, 186, 1);
+    box-shadow: 0px 7px 6px 0px rgba(186, 186, 186, 1);
   }
 
-  @media only screen and (min-width: 1000px){
-    .mobile-header{
-        display: none;
-    }
-
-    .desktop-header{
-        display: inline;
-    }
-
-    .desktop-header-lower{
-        display: flex;
-    }
-    
-    h1{
-        background-color: #65261A;
-    }
-
-    button{
-        height: 46px;
-        margin-left: 10px;
-        margin-right: 10px;
-        transform:translateY(-8px)
-    }
-
-    button:active {
-        transform: translateY(0px);
-    }
+  .movie-info {
+    color: black;
+    font-size: 20px;
   }
+
+  .mobile-bookmark-button {
+    display: none;
+  }
+
+  button {
+    height: 100px;
+    min-width: 100px;
+  }
+
+  .bookmark-button {
+    display: inline;
+    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .desktop-header {
+    display: inline;
+  }
+
+  .desktop-header-lower {
+    display: flex;
+  }
+
+  h1 {
+    background-color: #65261a;
+  }
+
+  button {
+    height: 46px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: translateY(-8px);
+  }
+
+  button:active {
+    transform: translateY(0px);
+  }
+}
