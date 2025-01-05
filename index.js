@@ -42,12 +42,12 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
     console.log(moviesFound);
 
     movies = moviesFound;
-    amountOfPages = currentPage;
+    amountOfPages = currentPage - 1;
 
     ShowPage();
 }
 
-function ShowPage(){
+function ShowPage() {
     //Delete movie cards
     for (let i = 0; i < movieCards.length; i++) {
         movieCards[i].remove();
@@ -56,8 +56,7 @@ function ShowPage(){
 
     //Create new movie cards
     for (let i = 0; i < movies.length; i++) {
-        if(movies[i].page == pageToShow)
-        {
+        if (movies[i].page == pageToShow) {
             movieCard = CreateMovieCard(movies[i]);
             movieCards.push(movieCard);
             movieCardDiv.appendChild(movieCard);
@@ -116,4 +115,34 @@ function CreateMovieCard(movieToDisplay) {
     return movieCard;
 }
 
-SearchMovies("Batman", "358d3774&", 2);
+SearchMovies("Batman", "358d3774&", 5);
+
+//!Paginator
+
+function ChangePage(numToAdd) {
+    pageToShow += numToAdd;
+
+    if (pageToShow < 1) {
+        pageToShow = 1;
+    }
+    else if (pageToShow > amountOfPages) {
+        pageToShow = amountOfPages;
+    }
+    else {
+        ShowPage();
+    }
+}
+
+function GoToFirstPage() {
+    if (pageToShow != 1) {
+        pageToShow = 1;
+        ShowPage();
+    }
+}
+
+function GoToLastPage() {
+    if (pageToShow != amountOfPages) {
+        pageToShow = amountOfPages;
+        ShowPage();
+    }
+}
