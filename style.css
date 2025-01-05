@@ -149,11 +149,11 @@ input {
 h3{
     text-align: center;
     margin: auto;
-    height: 46px;
-    width: 46px;
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 46px;
+    min-height: 46px;
+    min-width: 72px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 36px;
 }
 
 @media only screen and (min-width: 500px) {
@@ -189,6 +189,11 @@ h3{
     height: 100px;
     min-width: 100px;
     max-width: 100px;
+  }
+
+  h3{
+    font-size: 46px;
+    min-width: 128px;
   }
 }
 

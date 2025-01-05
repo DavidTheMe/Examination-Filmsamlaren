@@ -5,6 +5,7 @@ let movieCards = [];
 let pageToShow = 1;
 let amountOfPages = 1;
 const movieCardDiv = document.querySelector(".movie-card-container")
+const paginatorNumber = document.querySelector(".paginator-number")
 
 async function SearchMovies(searchQuery, apiKey, maxPages) {
     const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchQuery)}&type=movie`;
@@ -45,6 +46,7 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
     amountOfPages = currentPage - 1;
 
     ShowPage();
+    ChangePaginatorNumber();
 }
 
 function ShowPage() {
@@ -131,6 +133,7 @@ function ChangePage(numToAdd) {
     else {
         ShowPage();
     }
+    ChangePaginatorNumber();
 }
 
 function GoToFirstPage() {
@@ -138,6 +141,7 @@ function GoToFirstPage() {
         pageToShow = 1;
         ShowPage();
     }
+    ChangePaginatorNumber();
 }
 
 function GoToLastPage() {
@@ -145,4 +149,9 @@ function GoToLastPage() {
         pageToShow = amountOfPages;
         ShowPage();
     }
+    ChangePaginatorNumber();
+}
+
+function ChangePaginatorNumber(){
+    paginatorNumber.textContent = pageToShow + " / " + amountOfPages;
 }
