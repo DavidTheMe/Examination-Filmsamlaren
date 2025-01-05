@@ -1,9 +1,15 @@
 // API key: 358d3774&
 
+let movies = [];
+let movieCards = [];
+let pageToShow = 1;
+let amountOfPages = 1;
+const movieCardDiv = document.querySelector(".movie-card-container")
+
 async function SearchMovies(searchQuery, apiKey, maxPages) {
     const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchQuery)}&type=movie`;
     let currentPage = 1;
-    const allMovies = []; // Array to store movie objects
+    const moviesFound = [];
 
     try {
         while (currentPage <= maxPages) {
@@ -17,7 +23,7 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
                     ...movie,
                     page: currentPage, // Add the page number to each movie object
                 }));
-                allMovies.push(...moviesWithPage);
+                moviesFound.push(...moviesWithPage);
 
                 // Check if there are more pages; stop if totalResults < current page
                 const totalResults = parseInt(data.totalResults, 10);
@@ -33,7 +39,81 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
         console.error("Network Error:", error);
     }
 
-    return allMovies; // Return the array of movie objects
+    console.log(moviesFound);
+
+    movies = moviesFound;
+    amountOfPages = currentPage;
+
+    ShowPage();
 }
 
-console.log(SearchMovies("batman", "358d3774&", 2));
+function ShowPage(){
+    //Delete movie cards
+    for (let i = 0; i < movieCards.length; i++) {
+        movieCards[i].remove();
+    }
+    movieCards = [];
+
+    //Create new movie cards
+    for (let i = 0; i < movies.length; i++) {
+        if(movies[i].page == pageToShow)
+        {
+            movieCard = CreateMovieCard(movies[i]);
+            movieCards.push(movieCard);
+            movieCardDiv.appendChild(movieCard);
+        }
+    }
+}
+
+function CreateMovieCard(movieToDisplay) {
+    // Create the main movie card container
+    const movieCard = document.createElement('div');
+    movieCard.classList.add('movie-card');
+
+    // Add the movie image
+    const movieImage = document.createElement('img');
+    movieImage.src = movieToDisplay.Poster;
+    movieImage.classList.add('movie-image');
+    movieImage.alt = movieToDisplay.Title + " movie poster";
+    movieCard.appendChild(movieImage);
+
+    // Create the movie card content container
+    const movieCardContent = document.createElement('div');
+    movieCardContent.classList.add('movie-card-content');
+
+    // Add the movie title
+    const movieTitle = document.createElement('h2');
+    movieTitle.textContent = movieToDisplay.Title;
+    movieCardContent.appendChild(movieTitle);
+
+    // Add year and type
+    const movieYearAndType = document.createElement('p');
+    movieYearAndType.classList.add('movie-info');
+    movieYearAndType.textContent = movieToDisplay.Year + " - " + movieToDisplay.Type;
+    movieCardContent.appendChild(movieYearAndType);
+
+    // Append the content to the card
+    movieCard.appendChild(movieCardContent);
+
+    // Add the mobile bookmark image
+    const mobileBookmarkButton = document.createElement('img');
+    mobileBookmarkButton.src = './images/icons/bookmark.png';
+    mobileBookmarkButton.classList.add('mobile-bookmark-button');
+    mobileBookmarkButton.alt = 'Bookmark';
+    movieCard.appendChild(mobileBookmarkButton);
+
+    // Add the bookmark button
+    const bookmarkButton = document.createElement('button');
+    bookmarkButton.classList.add('bookmark-button');
+    const buttonImage = document.createElement('img');
+    buttonImage.src = './images/icons/bookmark.png';
+    buttonImage.classList.add('button-image');
+    buttonImage.alt = 'Bookmark Button';
+    bookmarkButton.appendChild(buttonImage);
+    movieCard.appendChild(bookmarkButton);
+
+    // Return the constructed movie card
+    return movieCard;
+}
+
+SearchMovies("Batman", "358d3774&", 2);
