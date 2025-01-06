@@ -9,9 +9,13 @@ const paginatorNumber = document.querySelector(".paginator-number")
 const desktopSearchBar = document.querySelector(".desktop-search-bar")
 const loadingMessage = document.querySelector(".loading-message")
 const errorMessage = document.querySelector(".error-message")
+const mobileHeader = document.querySelector(".mobile-header")
+const mobileSearchBar = document.querySelector(".mobile-search-bar")
+const mobileSearchBarHodler = document.querySelector(".mobile-search-bar-holder")
 
 //Hide error message
 errorMessage.setAttribute("class", "hidden");
+mobileSearchBarHodler.setAttribute("class", "hidden");
 
 async function SearchMovies(searchQuery, apiKey, maxPages) {
     const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchQuery)}&type=movie`;
@@ -166,7 +170,18 @@ function ChangePaginatorNumber(){
     paginatorNumber.textContent = pageToShow + " / " + amountOfPages;
 }
 
-function SearchButtonPressed(){
+function DesktopSearchButtonPressed(){
     
     SearchMovies(desktopSearchBar.value, "358d3774&", 10);
+}
+
+function OpenSearchField(){
+    mobileHeader.setAttribute("class", "hidden");
+    mobileSearchBarHodler.setAttribute("class", "mobile-search-bar-holder");
+}
+
+function MobileSearch(){
+    SearchMovies(mobileSearchBar.value, "358d3774&", 10);
+    mobileHeader.setAttribute("class", "mobile-header");
+    mobileSearchBarHodler.setAttribute("class", "hidden");
 }

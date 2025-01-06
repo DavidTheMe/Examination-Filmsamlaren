@@ -10,13 +10,6 @@
 
 <body>
     <header>
-        <div class="mobile-header">
-            <h1>The Movie Site</h1>
-            <button class="mobile-search-button"><img class="button-image" src="./images/icons/menu-burger.png"
-                    alt="search button"></button>
-            <button class="mobile-search-button"><img class="button-image" src="./images/icons/search.png"
-                    alt="search button"></button>
-        </div>
         <div class="desktop-header">
             <h1>The Movie Site</h1>
         </div>
@@ -27,9 +20,24 @@
             </button>
             <input class="desktop-search-bar">
             <button class="desktop-dropdown">
-                <p class="button-text"  onclick="SearchButtonPressed()">Search</p>
+                <p class="button-text" onclick="DesktopSearchButtonPressed()">Search</p>
             </button>
         </div>
+        <div class="mobile-header">
+            <h1>The Movie Site</h1>
+            <button class="mobile-search-button"><img class="button-image" src="./images/icons/menu-burger.png"
+                    alt="search button"></button>
+            <button onclick="OpenSearchField()" class="mobile-search-button"><img class="button-image"
+                    src="./images/icons/search.png" alt="search button"></button>
+        </div>
+
+        <div class="mobile-search-bar-holder">
+            <input class="mobile-search-bar">
+            <button onclick="MobileSearch()" class="mobile-search-button"><img class="button-image"
+                src="./images/icons/search.png" alt="search button"></button>
+        </div>
+
+        
     </header>
 
     <p class="loading-message">Loading...</p>
@@ -39,11 +47,15 @@
     </div>
 
     <div class="paginator">
-        <button onclick="GoToFirstPage()"><img class="button-image" src="./images/icons/angle-double-small-left.png" alt="search button"></button>
-        <button onclick="ChangePage(-1)"><img class="button-image" src="./images/icons/angle-small-left.png" alt="search button"></button>
+        <button onclick="GoToFirstPage()"><img class="button-image" src="./images/icons/angle-double-small-left.png"
+                alt="search button"></button>
+        <button onclick="ChangePage(-1)"><img class="button-image" src="./images/icons/angle-small-left.png"
+                alt="search button"></button>
         <h3 class="paginator-number"></h3>
-        <button onclick="ChangePage(1)"><img class="button-image" src="./images/icons/angle-small-right.png" alt="search button"></button>
-        <button onclick="GoToLastPage()"><img class="button-image" src="./images/icons/angle-double-small-right.png" alt="search button"></button>
+        <button onclick="ChangePage(1)"><img class="button-image" src="./images/icons/angle-small-right.png"
+                alt="search button"></button>
+        <button onclick="GoToLastPage()"><img class="button-image" src="./images/icons/angle-double-small-right.png"
+                alt="search button"></button>
     </div>
 
     <script src="index.js"></script>

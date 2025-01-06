@@ -140,6 +140,19 @@ button:active {
   font-size: 26px;
 }
 
+
+.mobile-search-bar-holder {
+    display: flex;
+    margin: 5vw;
+    height: 64px;
+  }
+
+  .mobile-search-bar {
+    font-size: 26px;
+    width: 60vw;
+  }
+  
+
 .paginator {
   display: flex;
   justify-content: center;
@@ -242,5 +255,9 @@ h3{
 
   button:active {
     transform: translateY(0px);
+  }
+
+  .mobile-search-bar-holder {
+    display: none;
   }
 }
