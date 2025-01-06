@@ -6,11 +6,13 @@ let pageToShow = 1;
 let amountOfPages = 1;
 const movieCardDiv = document.querySelector(".movie-card-container")
 const paginatorNumber = document.querySelector(".paginator-number")
+const desktopSearchBar = document.querySelector(".desktop-search-bar")
 
 async function SearchMovies(searchQuery, apiKey, maxPages) {
     const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchQuery)}&type=movie`;
     let currentPage = 1;
     const moviesFound = [];
+    console.log("Searching for " + searchQuery);
 
     try {
         while (currentPage <= maxPages) {
@@ -154,4 +156,9 @@ function GoToLastPage() {
 
 function ChangePaginatorNumber(){
     paginatorNumber.textContent = pageToShow + " / " + amountOfPages;
+}
+
+function SearchButtonPressed(){
+    
+    SearchMovies(desktopSearchBar.value, "358d3774&", 10);
 }

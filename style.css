@@ -134,7 +134,7 @@ button:active {
   margin-right: 4px;
 }
 
-input {
+.desktop-search-bar {
   min-width: 30%;
   max-width: 50%;
   font-size: 26px;
