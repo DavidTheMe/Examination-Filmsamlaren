@@ -7,12 +7,19 @@ let amountOfPages = 1;
 const movieCardDiv = document.querySelector(".movie-card-container")
 const paginatorNumber = document.querySelector(".paginator-number")
 const desktopSearchBar = document.querySelector(".desktop-search-bar")
+const loadingMessage = document.querySelector(".loading-message")
+const errorMessage = document.querySelector(".error-message")
+
+//Hide error message
+errorMessage.setAttribute("class", "hidden");
 
 async function SearchMovies(searchQuery, apiKey, maxPages) {
     const baseUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${encodeURIComponent(searchQuery)}&type=movie`;
     let currentPage = 1;
     const moviesFound = [];
     console.log("Searching for " + searchQuery);
+
+    loadingMessage.setAttribute("class", "loading-message");
 
     try {
         while (currentPage <= maxPages) {
@@ -46,9 +53,10 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
 
     movies = moviesFound;
     amountOfPages = currentPage - 1;
-
+    pageToShow = 1;
     ShowPage();
     ChangePaginatorNumber();
+    loadingMessage.setAttribute("class", "hidden");
 }
 
 function ShowPage() {

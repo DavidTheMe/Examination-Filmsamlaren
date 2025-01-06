@@ -156,6 +156,25 @@ h3{
     font-size: 36px;
 }
 
+.loading-message{
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    margin: 40px;
+}
+
+.error-message{
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    margin: 40px;
+    color: red;
+}
+
+.hidden{
+    display: none;
+}
+
 @media only screen and (min-width: 500px) {
   .movie-card {
     margin: 20px;
