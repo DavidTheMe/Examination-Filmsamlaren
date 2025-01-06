@@ -12,6 +12,7 @@ const errorMessage = document.querySelector(".error-message")
 const mobileHeader = document.querySelector(".mobile-header")
 const mobileSearchBar = document.querySelector(".mobile-search-bar")
 const mobileSearchBarHodler = document.querySelector(".mobile-search-bar-holder")
+let currentExtraInfo = null;
 
 //Hide error message
 errorMessage.setAttribute("class", "hidden");
@@ -64,21 +65,29 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
 }
 
 function ShowPage() {
-    //Delete movie cards
+    // Delete existing movie cards
     for (let i = 0; i < movieCards.length; i++) {
-        movieCards[i].remove();
+        movieCards[i][0].remove(); // Remove the DOM element (first element in the array)
     }
-    movieCards = [];
+    movieCards = []; // Clear the movieCards array
 
-    //Create new movie cards
+    // Create new movie cards
     for (let i = 0; i < movies.length; i++) {
-        if (movies[i].page == pageToShow) {
-            movieCard = CreateMovieCard(movies[i]);
+        if (movies[i].page === pageToShow) {
+            const movieCardElement = CreateMovieCard(movies[i]);
+            const movieCard = [movieCardElement, movies[i]];
+            movieCardElement.addEventListener("click", () => ExpandForMoreInfo(movies[i], movieCardElement));
+
+
+            // Add the pair to movieCards array
             movieCards.push(movieCard);
-            movieCardDiv.appendChild(movieCard);
+
+            // Append the DOM element to the container
+            movieCardDiv.appendChild(movieCard[0]);
         }
     }
 }
+
 
 function CreateMovieCard(movieToDisplay) {
     // Create the main movie card container
@@ -131,7 +140,112 @@ function CreateMovieCard(movieToDisplay) {
     return movieCard;
 }
 
-SearchMovies("Batman", "358d3774&", 5);
+async function ExpandForMoreInfo(movie, movieCardElement) {
+    console.log("You clicked " + movie.Title)
+    if (currentExtraInfo != null) {
+        currentExtraInfo.remove();
+    }
+
+    //Add loading text
+    const loadingText = document.createElement('p');
+    const movieCardContent = movieCardElement.querySelector(".movie-card-content");
+
+    loadingText.classList.add('movie-info');
+    loadingText.textContent = " Loading...";
+    movieCardContent.appendChild(loadingText);
+
+    //Get info
+    const url = 'http://www.omdbapi.com/?apikey=358d3774&&i=' + movie.imdbID;
+    console.log(url);
+    let movieInfo = null;
+
+
+
+    try {
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            movieInfo = data;
+            loadingText.remove();
+
+            //Create extra info on card
+            const extraInfo = document.createElement('div');
+            extraInfo.classList.add('extra-info');
+            movieCardContent.appendChild(extraInfo);
+
+            //Genre
+            const genreText = document.createElement('p');
+            genreText.textContent = "Genre: " + movieInfo.Genre;
+            genreText.classList.add('movie-info');
+            extraInfo.appendChild(genreText);
+
+            extraInfo.appendChild(document.createElement('br'));
+
+            //Director
+            const directorText = document.createElement('p');
+            directorText.textContent = "Director: " + movieInfo.Director;
+            directorText.classList.add('movie-info');
+            extraInfo.appendChild(directorText);
+
+            //Writers
+            const writersText = document.createElement('p');
+            writersText.textContent = "Writer(s): " + movieInfo.Writer;
+            writersText.classList.add('movie-info');
+            extraInfo.appendChild(writersText);
+
+            //Actors
+            const actorText = document.createElement('p');
+            actorText.textContent = "Actors: " + movieInfo.Actors;
+            actorText.classList.add('movie-info');
+            extraInfo.appendChild(actorText);
+
+            extraInfo.appendChild(document.createElement('br'));
+
+            //Country
+            const countryText = document.createElement('p');
+            countryText.textContent = "Country: " + movieInfo.Country;
+            countryText.classList.add('movie-info');
+            extraInfo.appendChild(countryText);
+
+            //Language
+            const languageText = document.createElement('p');
+            languageText.textContent = "Language: " + movieInfo.Language;
+            languageText.classList.add('movie-info');
+            extraInfo.appendChild(languageText);
+
+            extraInfo.appendChild(document.createElement('br'));
+
+            //Plot
+            const plotText = document.createElement('p');
+            plotText.textContent = "Plot summary: " + movieInfo.Plot;
+            plotText.classList.add('movie-info');
+            plotText.classList.add('extra-info-overflow');
+            extraInfo.appendChild(plotText);
+
+            currentExtraInfo = extraInfo;
+
+
+        } else {
+            const errorText = document.createElement('p');
+            errorText.classList.add('movie-info');
+            errorText.textContent = `Failed to fetch data. Status code: ${response.status}`;
+            movieCardContent.appendChild(errorText);
+
+        }
+    } catch (error) {
+        console.error(error);
+        const errorText = document.createElement('p');
+        errorText.classList.add('movie-info');
+        errorText.textContent = error.message;
+        movieCardContent.appendChild(errorText);
+    }
+
+
+}
+
+SearchMovies("Batman", "358d3774&", 9);
+
+
 
 //!Paginator
 
@@ -166,21 +280,21 @@ function GoToLastPage() {
     ChangePaginatorNumber();
 }
 
-function ChangePaginatorNumber(){
+function ChangePaginatorNumber() {
     paginatorNumber.textContent = pageToShow + " / " + amountOfPages;
 }
 
-function DesktopSearchButtonPressed(){
-    
+function DesktopSearchButtonPressed() {
+
     SearchMovies(desktopSearchBar.value, "358d3774&", 10);
 }
 
-function OpenSearchField(){
+function OpenSearchField() {
     mobileHeader.setAttribute("class", "hidden");
     mobileSearchBarHodler.setAttribute("class", "mobile-search-bar-holder");
 }
 
-function MobileSearch(){
+function MobileSearch() {
     SearchMovies(mobileSearchBar.value, "358d3774&", 10);
     mobileHeader.setAttribute("class", "mobile-header");
     mobileSearchBarHodler.setAttribute("class", "hidden");

@@ -49,7 +49,7 @@ h1 {
 .movie-card {
   display: flex;
   width: 95vw;
-  height: 80px;
+  min-height: 80px;
   padding: 8px;
 }
 
@@ -84,8 +84,14 @@ h2 {
   padding-right: 8px;
 }
 
+.extra-info-overflow{
+    white-space: normal; /* Allows the text to wrap onto the next line */
+  overflow: visible;   /* Ensures the content is fully visible */
+  text-overflow: clip; /* No ellipsis applied */
+}
+
 .movie-image {
-  height: 100%;
+  height: 100px;
 }
 
 button {
@@ -193,7 +199,7 @@ h3{
     margin: 20px;
     background-color: rgb(240, 240, 240);
     width: 85vw;
-    height: 200px;
+    min-height: 200px;
     border-radius: 20px;
     padding: 28px;
 
@@ -227,6 +233,11 @@ h3{
     font-size: 46px;
     min-width: 128px;
   }
+  
+  .movie-image {
+    height: 200px;
+  }
+
 }
 
 @media only screen and (min-width: 1000px) {
