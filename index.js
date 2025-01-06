@@ -30,29 +30,53 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
         while (currentPage <= maxPages) {
             // Fetch movies for the current page
             const response = await fetch(`${baseUrl}&page=${currentPage}`);
+            
+            // Check if the response is valid
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.status}`);
+            }
+    
             const data = await response.json();
-
-            if (data.Response === "True") {
+    
+            // Ensure the response is structured as expected
+            if (data.Response === "True" && data.Search && data.totalResults) {
                 // Add movies to the array and include the current page
                 const moviesWithPage = data.Search.map(movie => ({
                     ...movie,
                     page: currentPage, // Add the page number to each movie object
                 }));
                 moviesFound.push(...moviesWithPage);
-
-                // Check if there are more pages; stop if totalResults < current page
+    
                 const totalResults = parseInt(data.totalResults, 10);
+    
+                // Display loading message with the number of movies and the current page
+                loadingMessage.textContent = `Loading ${totalResults} movies... (Page ${currentPage})`;
+    
+                // Stop fetching if we've reached the end
                 if (currentPage * 10 >= totalResults) break;
             } else {
-                console.error(`Error: ${data.Error}`);
+                const errorMessage = data.Error || 'Unknown error occurred';
+                console.error(`Error: ${errorMessage}`);
+                loadingMessage.textContent = `Error: ${errorMessage}`;
                 break;
             }
-
+    
             currentPage++; // Move to the next page
         }
+    
+        // After fetching all pages, display the total number of movies found
+        const totalMoviesFound = moviesFound.length;
+        if (totalMoviesFound > 0) {
+            loadingMessage.textContent = `Found ${totalMoviesFound} movies`;
+        } else {
+            loadingMessage.textContent = "No movies found.";
+        }
+    
     } catch (error) {
-        console.error("Network Error:", error);
+        // Handle any other errors, such as network errors or invalid JSON
+        loadingMessage.textContent = `Network Error: ${error.message}`;
     }
+    
 
     console.log(moviesFound);
 
@@ -61,8 +85,8 @@ async function SearchMovies(searchQuery, apiKey, maxPages) {
     pageToShow = 1;
     ShowPage();
     ChangePaginatorNumber();
-    loadingMessage.setAttribute("class", "hidden");
 }
+
 
 function ShowPage() {
     // Delete existing movie cards
@@ -120,6 +144,7 @@ function CreateMovieCard(movieToDisplay) {
     movieCard.appendChild(movieCardContent);
 
     // Add the mobile bookmark image
+    /*
     const mobileBookmarkButton = document.createElement('img');
     mobileBookmarkButton.src = './images/icons/bookmark.png';
     mobileBookmarkButton.classList.add('mobile-bookmark-button');
@@ -135,6 +160,7 @@ function CreateMovieCard(movieToDisplay) {
     buttonImage.alt = 'Bookmark Button';
     bookmarkButton.appendChild(buttonImage);
     movieCard.appendChild(bookmarkButton);
+    */
 
     // Return the constructed movie card
     return movieCard;
@@ -243,9 +269,7 @@ async function ExpandForMoreInfo(movie, movieCardElement) {
 
 }
 
-SearchMovies("Batman", "358d3774&", 9);
-
-
+SearchMovies("Batman", "358d3774&", 50);
 
 //!Paginator
 
@@ -286,7 +310,7 @@ function ChangePaginatorNumber() {
 
 function DesktopSearchButtonPressed() {
 
-    SearchMovies(desktopSearchBar.value, "358d3774&", 10);
+    SearchMovies(desktopSearchBar.value, "358d3774&", 50);
 }
 
 function OpenSearchField() {
@@ -295,7 +319,7 @@ function OpenSearchField() {
 }
 
 function MobileSearch() {
-    SearchMovies(mobileSearchBar.value, "358d3774&", 10);
+    SearchMovies(mobileSearchBar.value, "358d3774&", 50);
     mobileHeader.setAttribute("class", "mobile-header");
     mobileSearchBarHodler.setAttribute("class", "hidden");
 }
